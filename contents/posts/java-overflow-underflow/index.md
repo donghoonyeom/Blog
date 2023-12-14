@@ -1,6 +1,5 @@
 ---
 title: "Java 정수형의 오버플로우와 언더플로우"
-description: "오버플로우와 언더플로우가 뭘까?"
 date: 2023-06-25
 update: 2023-06-25
 tags:

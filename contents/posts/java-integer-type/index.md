@@ -1,6 +1,5 @@
 ---
 title: "Java 정수타입"
-description: "Java 정수타입에 대해서 알아보자"
 date: 2023-06-25
 update: 2023-06-25
 tags:

@@ -1,6 +1,5 @@
 ---
 title: "☕️Java 개발 환경 구축 (1)"
-description: "어떻게 글을 작성하고 추가할까요?"
 date: 2023-05-09
 update: 2023-05-09
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "Git 기본 명령어"
-description: "Git 기본 명령어에 대해 알아보자"
+description: "Git 기본 명령어 정리"
 date: 2023-06-27
 update: 2023-06-27
 tags:

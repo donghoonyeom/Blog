@@ -1,6 +1,5 @@
 ---
 title: "Java 문자열(String)"
-description: "Java 문자열에 대해 알아보자"
 date: 2023-06-27
 update: 2023-06-27
 tags:

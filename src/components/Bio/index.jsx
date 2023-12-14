@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import ProfileImage from "static/profile.png"
+import profileImage from "static/profile.png"
 
 import {
   FaGithub,
@@ -21,7 +21,7 @@ import {
   FaLink,
 } from "react-icons/fa6"
 
-import { description, author, links } from "../../../blog-config"
+import { siteUrl ,description, author, links } from "../../../blog-config"
 
 const BioWrapper = styled.div`
   display: flex;
@@ -31,6 +31,10 @@ const BioWrapper = styled.div`
     padding: 0 15px;
   }
 `
+const profileImage =
+  typeof window !== "undefined" && window.location.host === "localhost:8000"
+    ? "http://localhost:8000"
+    : siteUrl
 
 
 const Profile = styled.div`
@@ -39,7 +43,7 @@ const Profile = styled.div`
   width: 128px;
   height: 128px;
   border-radius: 999px;
-  background-image: url(${ProfileImage});
+  background-image: url(${profileImage});
   background-size: cover;
   background-position: center;
 `

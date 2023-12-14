@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-import profileImage from "static/profile.png"
 
 import {
   FaGithub,
@@ -31,7 +30,7 @@ const BioWrapper = styled.div`
     padding: 0 15px;
   }
 `
-const profileImage =
+const profileImageRoot =
   typeof window !== "undefined" && window.location.host === "localhost:8000"
     ? "http://localhost:8000"
     : siteUrl
@@ -43,7 +42,7 @@ const Profile = styled.div`
   width: 128px;
   height: 128px;
   border-radius: 999px;
-  background-image: url(${profileImage});
+  background-image: url(${profileImageRoot});
   background-size: cover;
   background-position: center;
 `

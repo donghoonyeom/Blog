@@ -32,8 +32,8 @@ const BioWrapper = styled.div`
 `
 const profileImageRoot =
   typeof window !== "undefined" && window.location.host === "localhost:8000"
-    ? "http://localhost:8000"
-    : siteUrl
+    ? "http://localhost:8000/static/profile.png"
+    : `${siteUrl}/static/profile.png`;
 
 
 const Profile = styled.div`

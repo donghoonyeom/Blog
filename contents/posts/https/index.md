@@ -1,7 +1,7 @@
 ---
 title: "HTTPS에 대한 간단한 정리"
 date: 2023-07-07
-update: 2021-07-07
+update: 2023-07-07
 tags:
   - https
   - cs

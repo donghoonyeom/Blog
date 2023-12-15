@@ -1,7 +1,7 @@
 ---
 title: "이터레이터 패턴 (Iterator Pattern)"
 date: 2023-07-02
-update: 2021-07-02
+update: 2023-07-02
 tags:
   - 디자인패턴
   - 이터레이터패턴

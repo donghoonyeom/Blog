@@ -1,7 +1,7 @@
 ---
 title: "TCP/IP 4계층 모델"
 date: 2023-07-09
-update: 2021-07-09
+update: 2023-07-09
 tags:
   - tcp/ip
   - cs

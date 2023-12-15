@@ -1,7 +1,7 @@
 ---
 title: "프록시 패턴 (Proxy Pattern)"
 date: 2023-07-02
-update: 2021-07-02
+update: 2023-07-02
 tags:
   - 디자인패턴
   - 프록시패턴

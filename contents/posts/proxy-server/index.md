@@ -1,7 +1,7 @@
 ---
 title: "프록시 서버 (Proxy Server)"
 date: 2023-07-02
-update: 2021-07-02
+update: 2023-07-02
 tags:
   - cs
   - 프록시서버

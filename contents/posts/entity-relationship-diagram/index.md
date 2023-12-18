@@ -1,7 +1,7 @@
 ---
 title: "ERD에 대한 간단한 설명(Entity Relationship Diagram)"
-date: 2023-07-17
-update: 2023-07-17
+date: 2023-07-21
+update: 2023-07-21
 tags:
   - cs
   - erd

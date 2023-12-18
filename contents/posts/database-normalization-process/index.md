@@ -1,7 +1,7 @@
 ---
 title: "Database 정규화 과정"
-date: 2023-07-17
-update: 2023-07-17
+date: 2023-07-23
+update: 2023-07-23
 tags:
   - cs
   - database

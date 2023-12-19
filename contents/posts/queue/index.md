@@ -1,5 +1,5 @@
 ---
-title: "큐(Queue)"
+title: "큐 (Queue)"
 date: 2023-08-01
 update: 2023-08-01
 tags:

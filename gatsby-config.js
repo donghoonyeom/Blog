@@ -151,25 +151,23 @@ module.exports = {
                 })
               })
             },
-            query: `
-              {
-                allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                ) {
-                  edges {
-                    node {
-                      excerpt
-                      html
-                      fields { slug }
-                      frontmatter {
-                        title
-                        date
-                      }
-                    }
-                  }
-                }
-              }
-            `,
+            query: `{
+  allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+    edges {
+      node {
+        excerpt
+        html
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          date
+        }
+      }
+    }
+  }
+}`,
             output: `/rss.xml`,
             title: `RSS Feed of ${title}`,
             match: "^/blog/",

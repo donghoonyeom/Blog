@@ -55,67 +55,60 @@ const Post = ({ data }) => {
 
 export default Post
 
-export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $series: String
-    $previousPostId: String
-    $nextPostId: String
-  ) {
-    site {
-      siteMetadata {
-        title
-      }
+export const pageQuery = graphql`query BlogPostBySlug($id: String!, $series: String, $previousPostId: String, $nextPostId: String) {
+  site {
+    siteMetadata {
+      title
     }
-    markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 200, truncate: true)
-      html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        update(formatString: "MMMM DD, YYYY")
-        tags
-        series
-      }
-      fields {
-        slug
-        readingTime {
-          minutes
-        }
-      }
+  }
+  markdownRemark(id: {eq: $id}) {
+    id
+    excerpt(pruneLength: 200, truncate: true)
+    html
+    frontmatter {
+      title
+      date(formatString: "MMMM DD, YYYY")
+      update(formatString: "MMMM DD, YYYY")
+      tags
+      series
     }
-    seriesList: allMarkdownRemark(
-      sort: { order: ASC, fields: [frontmatter___date] }
-      filter: { frontmatter: { series: { eq: $series } } }
-    ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
+    fields {
+      slug
+      readingTime {
+        minutes
       }
     }
   }
-`
+  seriesList: allMarkdownRemark(
+    sort: {frontmatter: {date: ASC}}
+    filter: {frontmatter: {series: {eq: $series}}}
+  ) {
+    edges {
+      node {
+        id
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+        }
+      }
+    }
+  }
+  previous: markdownRemark(id: {eq: $previousPostId}) {
+    fields {
+      slug
+    }
+    frontmatter {
+      title
+    }
+  }
+  next: markdownRemark(id: {eq: $nextPostId}) {
+    fields {
+      slug
+    }
+    frontmatter {
+      title
+    }
+  }
+}`

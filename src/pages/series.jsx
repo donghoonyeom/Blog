@@ -57,31 +57,29 @@ const SeriesPage = ({ data }) => {
 
 export default SeriesPage
 
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
+export const pageQuery = graphql`{
+  site {
+    siteMetadata {
+      title
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
+  }
+  allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+    group(field: {frontmatter: {tags: SELECT}}) {
+      fieldValue
+      totalCount
+    }
+    nodes {
+      excerpt(pruneLength: 200, truncate: true)
+      fields {
+        slug
       }
-      nodes {
-        excerpt(pruneLength: 200, truncate: true)
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          update(formatString: "MMM DD, YYYY")
-          title
-          tags
-          series
-        }
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        update(formatString: "MMM DD, YYYY")
+        title
+        tags
+        series
       }
     }
   }
-`
+}`

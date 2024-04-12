@@ -5,6 +5,7 @@ update: 2023-12-06
 tags:
   - cs
   - 보안
+series: "side-pair"
 ---
 
 ## [들어가며]

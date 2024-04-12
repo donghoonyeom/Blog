@@ -73,8 +73,9 @@ multipart/form-data는 name을 key(unique할 필요 없음) data를 value로 하
 
 controller 부분은 다음과 같다.
 
-![FeedController.java](5.png)]
+![FeedController.java](5.png)
 
 ## [정리]
 
 요청 자체가 복잡한 API를 Argument Resolver에서 Native한 Request를 직접 만져서 해결할 수 있다. 요청이 복잡하더라도 겁먹지 말고 Argument Resolver를 적극 활용해보자.
+

@@ -30,7 +30,7 @@ series: "side-pair"
 > [WARN] [http-nio-9000-exec-483] [org.hibernate.orm.query] - HHH90003004:
 firstResult/maxResults specified with collection fetch; applying in memory
 
-바로 우리의 쿼리에 문제가 있었다는 것을 알게되었다.
+바로 쿼리에 문제가 있었다는 것을 알게되었다.
 그럼 피드 목록 조회 요청 때 사용하는 쿼리를 살펴보자!
 
 ## [엔티티 연관관계]
@@ -56,10 +56,10 @@ firstResult/maxResults specified with collection fetch; applying in memory
 
 ```java
 select
---...
+    --...
 from
     feed f1_0 
---...
+    --...
 left join
     feed_tag v1_0 
         on f1_0.id=v1_0.feed_id 
@@ -75,7 +75,7 @@ order by
 N쪽의 테이블에서 몇 개의 데이터를 가져와야하는지 알 수 없어서 테이블 정보를 모두 가져올 수 밖에 없다는 것이다.
 
 아래 그림과 같이 피드가 존재한다고 하자.
-우리는 피드 3개를 가져오기 위해 limit 3을 걸었다.
+피드 3개를 가져오기 위해 limit 3을 걸었다.
 우선 피드 태그에 fetchJoin을 붙이지 않으면 어떤 결과가 나올까?
 
 ![](2.png)

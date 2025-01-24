@@ -135,7 +135,7 @@ feedContentRepository의 경우 위와 같이 JpaRepository를 상속받고 있�
 
 ![](3.png)
 
-이때, JpaRepository 인터페이스의 구현체인 SimpleJpaRepository 클래스를 가면 위와 같이 @Transactional이 붙어 있는 것을 볼 수 있다. 그렇기 때문에 해당 메서드가 호출하는 시점에 대해서만 트랜잭션이 걸려있게 되는 것이다.
+이때, JpaRepository 인터페이스의 구현체인 SimpleJpaRepository 클래스를 가면 위와 같이 `@Transactional`이 붙어 있는 것을 볼 수 있다. 그렇기 때문에 해당 메서드가 호출하는 시점에 대해서만 트랜잭션이 걸려있게 되는 것이다.
 
 기본적으로 스프링에서 영속성 컨텍스트는 트랜잭션과 생명주기가 동일하기 때문에, feedContentRepository로부터 조회해온 FeedContent는 트랜잭션이 종료되면서 영속성 컨텍스트의 관리 범위에서도 함께 벗어나게 된다. 현재 피드 본문 엔티티는 준영속 상태가 되었음을 기억하자.
 
@@ -219,16 +219,16 @@ void 테스트() throws JsonProcessingException {
 
 분명 위에서 `피드_카테고리를_저장한다()` 메서드를 통해 저장을 했는데, 이게 어떻게 된 일일까?
 이는, `@SpringBootTest`(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) 때문이다.
-이전에 테스트 컨텍스트에 대한 게시글을 작성한 적이 있는데, 그때 random_port 옵션에 대해 이와 같이 커멘트를 남겼다.
+이전에 테스트 컨텍스트에 대한 블로그 글을 읽은 적이 있는데, 그때 random_port 옵션에 대해 이와 같이 커멘트를 봤었다.
 
 > 만약 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)을 사용하게 된다면 실제 웹 환경이 구성
 되기 때문에 다른 컨텍스트 정보를 지정하게 되면 다른 웹 서버가 띄워지게 된다.
 
 
 random_port 옵션을 지정하게 되면 별개의 스레드에서 컨테이너가 실행된다는 것이다.
-= 즉, 프로덕션 코드에서 작성한 메서드의 스레드와 @SpringBootTest의 메서드의 스레드가 다르다는 의미이다.
+= 즉, 프로덕션 코드에서 작성한 메서드의 스레드와 `@SpringBootTest`의 메서드의 스레드가 다르다는 의미이다.
 
-기본적으로 @Transactional이 붙게 되면 작업 스레드는 커넥션 풀에서 Connection 객체를 가져와서 사용하게 되는데, 스레드가 달라지게 되면 사용하게 되는 Connection이 달라지게 된다. 즉, 트랜잭션이 아예 달라지게 되는 것이다.
+기본적으로 `@Transactional`이 붙게 되면 작업 스레드는 커넥션 풀에서 Connection 객체를 가져와서 사용하게 되는데, 스레드가 달라지게 되면 사용하게 되는 Connection이 달라지게 된다. 즉, 트랜잭션이 아예 달라지게 되는 것이다.
 그렇기 때문에 프로덕션 코드가 실행되는 피드 생성 API의 스레드 입장으로서는 테스트 메서드인 피드_카테고리를_생성한다() 스레드가 하는 일을 인식하지 못하기 때문에 카테고리에 대한 정보를 받아올 수 없는 것이다.
 
 ![](11.png)
@@ -242,7 +242,7 @@ random_port 옵션을 지정하게 되면 별개의 스레드에서 컨테이너
 
 ![](13.png)
 
-@Transactional을 제거하면 위와 같이 레코드가 저장된다. (트랜잭션이 없으니 바로 DB에 저장)
+`@Transactional`을 제거하면 위와 같이 레코드가 저장된다. (트랜잭션이 없으니 바로 DB에 저장)
 
 
 그러면 이 문제를 어떻게 해결해야 할까?
@@ -277,7 +277,7 @@ public List<FeedNode> 피드_노드들을_반환한다(final String 액세스_�
 
 ```
 
-하지만, 위 코드는 동작하지 않는다. 이는 기본적으로 @Transactional은 Spring AOP를 사용하여 구현되기 때문이다.
+하지만, 위 코드는 동작하지 않는다. 이는 기본적으로 `@Transactional`은 Spring AOP를 사용하여 구현되기 때문이다.
 
 이때 크게 2가지의 특징이 존재한다.
 1. 타겟 클래스를 상속하여 프록시 객체를 생성하기 때문에 상속 자체가 불가능한 private 메서드에 대해서는 적용 불가
@@ -376,7 +376,7 @@ public class TransactionHelper {
 
 ```
 
-헬퍼 클래스에서는 TransactionTask 타입의 어떠한 람다식을 받아서, 해당 람다식을 @Transactional이 걸린 상태로 실행해주는 역할을 진행한다. 이제 이 헬퍼 클래스를 활용하게 되면 아래와 같이 테스트 코드를 작성할 수 있다.
+헬퍼 클래스에서는 TransactionTask 타입의 어떠한 람다식을 받아서, 해당 람다식을 `@Transactional`이 걸린 상태로 실행해주는 역할을 진행한다. 이제 이 헬퍼 클래스를 활용하게 되면 아래와 같이 테스트 코드를 작성할 수 있다.
 
 ```java
 @Test
@@ -463,7 +463,7 @@ void 테스트() throws JsonProcessingException {
 
 ```
 
-스프링에서는 이미 TransactionTemplate 이라는 인터페이스를 통해서 제공을 해주고 있었다... ㅠ
+스프링에서는 이미 TransactionTemplate 이라는 인터페이스를 통해서 제공을 해주고 있었다..
 위와 같이 반환값이 필요한 경우라면 TransactionCallback을 인자로 받으면 된다.
 람다를 활용하면 더 축약이 가능하다.
 
